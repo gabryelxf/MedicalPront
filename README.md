@@ -1,4 +1,5 @@
 # MedicalPront
+
 Repositório do mini-projeto de prontuario médico.
 
 API utilizando java - 8. JDBC e servlets.
@@ -14,7 +15,7 @@ Exemplo de chamada: http://localhost:8080/MedicalPront/pacienteDados
 	"cpfPaciente":"57241790081"
 }
 
-Exemplo de saida:
+Exemplo de saida: (Falta formatar para UTF-8)
 
 {
 	"cpfPaciente": "57241790081",
