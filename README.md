@@ -94,3 +94,9 @@ Exemplo de saida: (Falta formatar para UTF-8)
 		}
 	]
 }
+
+![db](https://user-images.githubusercontent.com/28299614/183482979-21c34b30-e888-4cc7-942b-f84abde124f6.PNG)
+
+
+![chamadaAPI](https://user-images.githubusercontent.com/28299614/183483003-47836cc5-541d-475b-9337-89bdbe136fb6.PNG)
+
