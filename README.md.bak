@@ -1,0 +1,8 @@
+# MedicalPront
+Repositório do mini-projeto de prontuario médico.
+
+API utilizando java - 8. JDBC e servlets.
+
+Método POST. Request JSON. cpfPaciente.
+
+API retorna um histórico do paciente em formato JSON. Prontuários, anamneses, exames, prescricoes, atestados, medicos e cid's.

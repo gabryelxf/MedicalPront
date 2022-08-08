@@ -1,0 +1,142 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mdb
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `mdb` ;
+
+-- -----------------------------------------------------
+-- Schema mdb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mdb` DEFAULT CHARACTER SET utf8 ;
+USE `mdb` ;
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_medico`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_medico` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_medico` (
+  `crmMedico` VARCHAR(12) NOT NULL,
+  `nomeMedico` VARCHAR(100) NOT NULL,
+  `dataNascimentoMedico` DATE NOT NULL,
+  `naturalidadeMedico` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`crmMedico`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_paciente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_paciente` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_paciente` (
+  `cpfPaciente` INT(11) NOT NULL,
+  `nomePaciente` VARCHAR(100) NOT NULL,
+  `emailPaciente` VARCHAR(256) NULL,
+  `dataNascimentoPaciente` DATE NOT NULL,
+  `telefonePaciente` VARCHAR(14) NULL,
+  PRIMARY KEY (`cpfPaciente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_prontuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_prontuario` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_prontuario` (
+  `idProntuario` INT NOT NULL AUTO_INCREMENT,
+  `cod_cpfPaciente` INT(11) NOT NULL,
+  PRIMARY KEY (`idProntuario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_exames`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_exames` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_exames` (
+  `idExame` INT NOT NULL AUTO_INCREMENT,
+  `cod_idProntuario` INT NOT NULL,
+  `descricaoExame` VARCHAR(200) NULL,
+  `obsExame` VARCHAR(500) NULL,
+  PRIMARY KEY (`idExame`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_anamnese`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_anamnese` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_anamnese` (
+  `idAnamnese` INT NOT NULL AUTO_INCREMENT,
+  `cod_idProntuario` INT NOT NULL,
+  `cod_crmMedico` VARCHAR(12) NOT NULL,
+  `descricaoBasicaAnamnese` VARCHAR(200) NULL,
+  `descricaoCompletaAnamnese` VARCHAR(400) NULL,
+  `cid` VARCHAR(45) NULL,
+  PRIMARY KEY (`idAnamnese`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_cid_sub_categoria`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_cid_sub_categoria` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_cid_sub_categoria` (
+  `id` VARCHAR(3) NOT NULL,
+  `descricao` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_prescricoes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_prescricoes` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_prescricoes` (
+  `id_prescricoes` INT NOT NULL,
+  `descricaoPrescricao` VARCHAR(100) NOT NULL,
+  `cod_idAnamnese` INT NOT NULL,
+  PRIMARY KEY (`id_prescricoes`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`tb_atestados`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`tb_atestados` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`tb_atestados` (
+  `idAtestado` INT NOT NULL AUTO_INCREMENT,
+  `descricaoAtestado` VARCHAR(45) NOT NULL,
+  `cod_idAnamnese` INT NOT NULL,
+  PRIMARY KEY (`idAtestado`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mdb`.`ta_cid_anamnese`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mdb`.`ta_cid_anamnese` ;
+
+CREATE TABLE IF NOT EXISTS `mdb`.`ta_cid_anamnese` (
+  `idCIDAnamnese` INT NOT NULL AUTO_INCREMENT,
+  `cod_cid_sub_categoria` VARCHAR(3) NOT NULL,
+  `cod_Anamnese` INT NOT NULL,
+  PRIMARY KEY (`idCIDAnamnese`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
